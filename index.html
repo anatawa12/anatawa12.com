@@ -1,33 +1,390 @@
 <!doctype html>
 <html lang="en">
-<title>anatawa12.com - the domain for anatawa12</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>anatawa12.com</title>
+  <link rel="icon" href="./icon-circle.svg">
+  <meta name="description" content="the domain for anatawa12 — multilingual developer in Yokohama, Japan.">
+  <style>
+    :root{
+      --bg: #faf9f6;
+      --ink: #1c1b18;
+      --muted: #757369;
+      --line: #e2e0d6;
+      --accent: #34524a;
+      --accent-soft: #34524a14;
+      --radius: 6px;
+      --sans: "Noto Sans", "Noto Sans JP", "Hiragino Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      --mono: ui-monospace, "SF Mono", "Cascadia Mono", "Noto Sans Mono", Consolas, "Liberation Mono", monospace;
+    }
 
-<h2>anatawa12.com</h2>
+    *{ box-sizing: border-box; }
 
-<p>
-  The domain for anatawa12.
-</p>
+    html{ -webkit-text-size-adjust: 100%; }
 
-<h3>Account Links</h3>
-<ul>
-  <li><a href="https://go.anatawa12.com/github">github</a></li>
-  <li><a href="https://go.anatawa12.com/qiita">qiita</a></li>
-  <li><a href="https://go.anatawa12.com/zenn">zenn</a></li>
-  <li><a href="https://go.anatawa12.com/twitter.main">twitter(main)</a></li>
-  <li><a href="https://go.anatawa12.com/twitter.vrchat">twitter(VRChat)</a></li>
-  <li><a href="https://go.anatawa12.com/vrchat">VRChat</a></li>
-  <li>(no link) NeosVR: anatawa12</li>
-  <li><a href="https://go.anatawa12.com/cluster">cluster</a></li>
-  <li><a href="https://go.anatawa12.com/reddit">reddit</a></li>
-  <li><a href="https://go.anatawa12.com/booth">booth</a></li>
-  <li><a href="https://go.anatawa12.com/misskey">misskey</a></li>
-</ul>
+    body{
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
 
-<h3>Popular Projects</h3>
-<ul>
-  <li><a href="https://vpm.anatawa12.com/avatar-optimizer/">Avatar Optimizer</a></li>
-  <li><a href="https://an12.net/alcom">ALCOM</a></li>
-  <li><a href="https://fixrtm.anatawa12.com/">fixRTM</a></li>
-  <li><a href="https://github.com/anatawa12/ForgeGradle-1.2">a fork of ForgeGradle 1.2</a></li>
-  <li><a href="https://github.com/anatawa12/clekeyOVR">clekeyOVR: an experimental keyboard for OpenVR</a></li>
-</ul>
+    .wrap{
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 96px 24px 72px;
+    }
+
+    a{ color: inherit; }
+
+    .eyebrow{
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+
+    /* ---------- intro ---------- */
+
+    .intro{
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .avatar{
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      object-fit: cover;
+      flex: none;
+    }
+
+    .intro h1{
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0 0 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .intro .tagline{
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 42ch;
+    }
+
+    /* ---------- sections ---------- */
+
+    section{
+      padding: 40px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    section:last-of-type{
+      border-bottom: none;
+    }
+
+    /* ---------- account tiles ---------- */
+
+    .tiles{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tile{
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: border-color .15s ease, background-color .15s ease;
+    }
+
+    a.tile:hover{
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    /* account id, revealed on hover/focus */
+    .tile[data-id]::after{
+      content: attr(data-id);
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 7px);
+      transform: translate(-50%, 4px);
+      background: var(--ink);
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1;
+      white-space: nowrap;
+      padding: 5px 8px;
+      border-radius: 4px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .15s ease, transform .15s ease;
+      z-index: 1;
+    }
+
+    .tile[data-id]:hover::after,
+    .tile[data-id]:focus-visible::after{
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .tile .icon{
+      width: 16px;
+      height: 16px;
+      flex: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tile .icon svg{
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+      display: block;
+    }
+
+    .tile .icon.icon-text{
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    a.tile:hover .icon.icon-text{
+      color: var(--accent);
+    }
+
+    .tile .label{
+      font-size: 14px;
+    }
+
+    .tile.disabled{
+      color: var(--muted);
+      border-style: dashed;
+    }
+
+    /* ---------- projects ---------- */
+
+    .projects{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .project{
+      display: block;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .project:first-child{
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .project:last-child{
+      padding-bottom: 0;
+    }
+
+    .project > a {
+      text-decoration: none;
+    }
+
+    .project-head{
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .project-name{
+      font-family: var(--mono);
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .project:hover .project-name {
+      color: var(--accent);
+    }
+
+    .project-meta{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .project-desc{
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 56ch;
+    }
+
+    /* ---------- footer ---------- */
+
+    footer{
+      padding-top: 40px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    footer a{
+      text-decoration: underline;
+      text-decoration-color: var(--line);
+      text-underline-offset: 3px;
+    }
+
+    footer a:hover{
+      text-decoration-color: var(--accent);
+      color: var(--accent);
+    }
+
+    :focus-visible{
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 480px){
+      .wrap{ padding: 64px 20px 56px; }
+      .intro{ gap: 14px; }
+      .avatar{ width: 48px; height: 48px; }
+    }
+  </style>
+</head>
+<body>
+<svg style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
+  <defs>
+    <symbol id="icon-github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+    <symbol id="icon-misskey" viewBox="0 0 24 24"><path d="M8.91076 16.8915c-1.03957.0038-1.93213-.6294-2.35267-1.366-.22516-.3217-.66989-.4364-.6761 0v2.0148c0 .8094-.29152 1.5097-.87581 2.1002-.56755.573-1.25977.8595-2.0779.8595-.80014 0-1.49298-.2865-2.07727-.8601C.28408 19.05 0 18.3497 0 17.5403V6.45968c0-.62378.17553-1.18863.52599-1.69455.36657-.52284.83426-.88582 1.4018-1.08769a2.84574 2.84574 0 0 1 1.00049-.17742c.90125 0 1.65239.35421 2.25281 1.06262l2.99713 3.51572c.06699.05016.263.43696.73192.43696.47016 0 .6916-.3868.75796-.43758l2.9717-3.5151c.6178-.70841 1.377-1.06262 2.2782-1.06262.3337 0 .6675.05893 1.0012.17742.5669.20187 1.0259.56422 1.377 1.08769.3665.50592.5501 1.07077.5501 1.69455V17.5403c0 .8094-.2915 1.5097-.8758 2.1002-.5675.573-1.2604.8595-2.0779.8595-.8008 0-1.493-.2865-2.0779-.8601-.5669-.5899-.8504-1.2902-.8504-2.0996v-2.0148c-.0496-.5499-.5303-.2032-.7009 0-.4503.8431-1.31369 1.3616-2.35264 1.366ZM21.447 8.60998c-.7009 0-1.3015-.24449-1.8019-.73348-.4838-.50571-.7257-1.11277-.7257-1.82118s.2419-1.30711.7257-1.79611c.5004-.50571 1.101-.75856 1.8019-.75856.7009 0 1.3017.25285 1.8025.75856.5003.489.7505 1.0877.7505 1.79611 0 .70841-.2502 1.31547-.7505 1.82118-.5008.48899-1.1016.73348-1.8025.73348Zm.0248.50655c.7009 0 1.2935.25285 1.7777.75856.5003.50571.7505 1.11301.7505 1.82181v6.2484c0 .7084-.2502 1.3155-.7505 1.8212-.4838.489-1.0764.7335-1.7777.7335-.7005 0-1.3011-.2445-1.8019-.7335-.5003-.5057-.7505-1.1128-.7505-1.8212v-6.2484c0-.7084.2502-1.3157.7505-1.82181.5004-.50571 1.101-.75856 1.8019-.75856Z"/></symbol>
+    <symbol id="icon-twitter" viewBox="0 0 512 512"><path d="M459.4 151.7c.3 4.5 .3 9.1 .3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103l0-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53 51.7 63.7 129.3 105.3 216.4 109.8-1.6-7.8-2.6-15.9-2.6-24 0-57.8 46.8-104.9 104.9-104.9 30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3z"/></symbol>
+    <symbol id="icon-vrchat" viewBox="0 0 24 24"><path d="M22.732 6.767H1.268A1.27 1.27 0 0 0 0 8.035v5.296c0 .7.57 1.268 1.268 1.268h18.594l1.725 2.22c.215.275.443.415.68.415.153 0 .296-.06.403-.167.128-.129.193-.308.193-.536l-.002-1.939A1.27 1.27 0 0 0 24 13.331V8.035c0-.7-.569-1.269-1.268-1.269Zm.8 6.564a.8.8 0 0 1-.8.801h-.34v.031l.004 2.371c0 .155-.05.233-.129.233s-.19-.079-.31-.235l-1.866-2.4H1.268a.8.8 0 0 1-.8-.8V8.064a.8.8 0 0 1 .8-.8h21.464a.8.8 0 0 1 .8.8v5.266ZM4.444 8.573c-.127 0-.225.041-.254.15l-.877 3.129-.883-3.128c-.03-.11-.127-.15-.254-.15-.202 0-.473.126-.473.311 0 .012.005.035.011.058l1.114 3.63c.058.173.265.254.485.254s.433-.08.484-.254l1.109-3.63c.005-.023.011-.04.011-.058 0-.179-.27-.312-.473-.312Zm2.925 2.36c.433-.132.757-.49.757-1.153 0-.918-.612-1.207-1.368-1.207H5.614a.234.234 0 0 0-.242.231v3.752c0 .156.184.237.374.237s.376-.081.376-.237V11.05h.484l.82 1.593c.058.115.156.179.26.179.219 0 .467-.203.467-.393a.155.155 0 0 0-.028-.092l-.756-1.403Zm-.61-.473h-.636V9.231h.635c.375 0 .618.162.618.618s-.242.612-.618.612Zm10.056.826h1.004l-.502-1.772-.502 1.772Zm4.684-3.095H9.366a.8.8 0 0 0-.8.8v3.383a.8.8 0 0 0 .8.8h12.132a.8.8 0 0 0 .8-.8V8.992a.8.8 0 0 0-.8-.801Zm-10.946 3.977c.525 0 .571-.374.589-.617.011-.179.173-.236.369-.236.26 0 .38.075.38.369 0 .698-.57 1.142-1.379 1.142-.727 0-1.327-.357-1.327-1.322v-1.61c0-.963.606-1.322 1.333-1.322.802 0 1.374.427 1.374 1.097 0 .3-.121.37-.375.37-.214 0-.37-.064-.375-.238-.012-.178-.052-.57-.6-.57-.387 0-.606.213-.606.663v1.61c0 .45.219.664.617.664Zm4.703.388c0 .156-.19.237-.375.237s-.375-.081-.375-.237V10.9h-1.299v1.656c0 .156-.19.237-.375.237s-.375-.081-.375-.237V8.804c0-.161.185-.23.375-.23s.375.069.375.23v1.507h1.299V8.804c0-.161.185-.23.375-.23s.375.069.375.23v3.752Zm3.198.236c-.127 0-.225-.04-.254-.15l-.22-.768h-1.322l-.219.768c-.029.11-.127.15-.254.15-.202 0-.473-.127-.473-.311 0-.012.006-.035.012-.058l1.114-3.63c.051-.173.265-.254.478-.254s.433.08.485.254l1.114 3.63c.006.023.012.04.012.058 0 .179-.272.311-.473.311Zm2.989-3.543h-.843v3.306c0 .156-.19.237-.375.237s-.375-.081-.375-.237V9.25h-.848c-.15 0-.237-.157-.237-.34 0-.162.075-.336.237-.336h2.44c.162 0 .238.173.238.335 0 .18-.087.34-.237.34Z"/></symbol>
+    <symbol id="icon-qiita" viewBox="0 0 24 24"><path d="M12 0C5.3726 0 0 5.3726 0 12s5.3726 12 12 12c3.3984 0 6.4665-1.413 8.6498-3.6832-.383-.0574-.7746-.2062-1.1466-.4542-.7145-.4763-1.3486-.9263-1.6817-1.674-1.2945 1.3807-3.0532 1.835-5.1822 2.0503-4.311.4359-8.0456-1.4893-8.4979-6.2996-.1922-2.045.2628-3.989 1.1804-5.582l-.5342-2.1009c-.0862-.3652.2498-.7126.6057-.6262l1.8456.448c1.0974-.9012 2.4249-1.49 3.8892-1.638 1.2526-.1267 2.467.0834 3.571.5624l1.7348-1.0494c.3265-.1974.7399.0257.7711.4164l.1 2.4747v.0002c1.334 1.4084 2.2424 3.3319 2.4478 5.516.116 1.2339-.012 2.1776-.339 3.078-.1531.4215-.1992.7778.0776 1.1305.2674.3408.6915 1.0026 1.1644.8917.7107-.1666 1.4718-.1223 1.9422.1715C23.4925 15.9525 24 14.0358 24 12c0-6.6274-5.3726-12-12-12Zm-.0727 5.727a5.2731 5.2731 0 0 0-.6146.0273c-2.2084.2233-3.9572 1.8135-4.4937 3.8484l-1.3176-.1996-.014.2589 1.2972.1407c-.0352.1497-.0643.2384-.086.3923l-1.1319.0902.0103.2025 1.1032-.088c-.0194.1713-.031.2814-.0332.4565l-1.0078.412.0495.2499.9598-.4492c.002.1339.008.2053.0207.3407.2667 2.8371 2.6364 3.3981 5.4677 3.1118 2.8312-.2863 5.0517-1.3114 4.785-4.1486-.013-.1361-.0324-.2068-.0553-.3392l1.0397.2257.0242-.229-1.0906-.207c-.0342-.1687-.0765-.271-.1264-.4327l1.1208-.1374-.0158-.2019-1.1499.1409a5.1093 5.1093 0 0 0-.1665-.4259l1.2665-.4042-.0397-.2536-1.3471.4667c-.819-1.7168-2.5002-2.8224-4.4546-2.8482Z"/></symbol>
+    <symbol id="icon-zenn" viewBox="0 0 24 24"><path d="M.264 23.771h4.984c.264 0 .498-.147.645-.352L19.614.874c.176-.293-.029-.645-.381-.645h-4.72c-.235 0-.44.117-.557.323L.03 23.361c-.088.176.029.41.234.41zM17.445 23.419l6.479-10.408c.205-.323-.029-.733-.41-.733h-4.691c-.176 0-.352.088-.44.235l-6.655 10.643c-.176.264.029.616.352.616h4.779c.234-.001.468-.118.586-.353z"/></symbol>
+    <symbol id="icon-reddit" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 3.314 1.343 6.314 3.515 8.485l-2.286 2.286C.775 23.225 1.097 24 1.738 24H12c6.627 0 12-5.373 12-12S18.627 0 12 0Zm4.388 3.199c1.104 0 1.999.895 1.999 1.999 0 1.105-.895 2-1.999 2-.946 0-1.739-.657-1.947-1.539v.002c-1.147.162-2.032 1.15-2.032 2.341v.007c1.776.067 3.4.567 4.686 1.363.473-.363 1.064-.58 1.707-.58 1.547 0 2.802 1.254 2.802 2.802 0 1.117-.655 2.081-1.601 2.531-.088 3.256-3.637 5.876-7.997 5.876-4.361 0-7.905-2.617-7.998-5.87-.954-.447-1.614-1.415-1.614-2.538 0-1.548 1.255-2.802 2.803-2.802.645 0 1.239.218 1.712.585 1.275-.79 2.881-1.291 4.64-1.365v-.01c0-1.663 1.263-3.034 2.88-3.207.188-.911.993-1.595 1.959-1.595Zm-8.085 8.376c-.784 0-1.459.78-1.506 1.797-.047 1.016.64 1.429 1.426 1.429.786 0 1.371-.369 1.418-1.385.047-1.017-.553-1.841-1.338-1.841Zm7.406 0c-.786 0-1.385.824-1.338 1.841.047 1.017.634 1.385 1.418 1.385.785 0 1.473-.413 1.426-1.429-.046-1.017-.721-1.797-1.506-1.797Zm-3.703 4.013c-.974 0-1.907.048-2.77.135-.147.015-.241.168-.183.305.483 1.154 1.622 1.964 2.953 1.964 1.33 0 2.47-.81 2.953-1.964.057-.137-.037-.29-.184-.305-.863-.087-1.795-.135-2.769-.135Z"/></symbol>
+    <symbol id="icon-booth" viewBox="0 0 1024 1024">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M0 812C0 929.084 94.9156 1024 212 1024H812C929.084 1024 1024 929.084 1024 812V212C1024 94.9156 929.084 0 812 0H212C94.9156 0 0 94.9156 0 212V812Z" fill="#FC4D50"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M773.828 438.341V389.068L650.744 192H608.227L541.093 353.238L475.077 214.446L438.138 214.382L326.272 478.653V227.833H250.172V250.007H192V327.26H250.172V550.306C250.172 570.098 266.227 586.141 286.004 586.141H324.033V832L401.683 831.946C401.683 831.946 401.695 720.762 401.695 720.644C401.695 658.964 455.026 608.963 520.963 608.563C521.198 608.563 521.445 608.535 521.707 608.535H521.744H521.786H521.875C629.722 608.612 717.139 690.28 717.139 790.983V832H773.828V611.427H832V489.487L773.828 438.341Z" fill="#fff"/>
+    </symbol>
+    <symbol id="icon-resonite" viewBox="0 0 1080 1080"><linearGradient id="rsn-a" x1="1143.564" x2="533.054" y1="473.184" y2="1074.184" gradientTransform="matrix(1 0 0 -1 0 1080)" gradientUnits="userSpaceOnUse"><stop offset=".38" style="stop-color:#ab40f2"/><stop offset=".47" style="stop-color:#7b40f2"/><stop offset=".58" style="stop-color:#4058f2"/><stop offset=".73" style="stop-color:#409ff2"/><stop offset=".8" style="stop-color:#409ff2"/></linearGradient><path d="m587.3 411.9 140.5-296.3c18.1-37.9 49.4-68.5 91-87.6 21.9-8.3 43.9-12.5 65.4-12.9h2.7c47.5-.1 92.1 18.3 125.7 51.8 17 17 30.1 36.8 38.9 58.5 1.8 4.3 3.3 8.7 4.8 13.1 12 38 11.2 80.6-4.8 122.4-19 41.4-49.7 72.8-87.5 90.9L667.6 492.2c-15.1 7.7-32.2 8.5-47.4 2.9-8-2.9-15.5-7.6-21.8-13.9l-.1-.1c-18.3-18.3-22.7-46.1-11-69.2" style="fill:url(#rsn-a)"/><linearGradient id="rsn-b" x1="-277.297" x2="496.633" y1="718.584" y2="94.454" gradientTransform="matrix(1 0 0 -1 0 1080)" gradientUnits="userSpaceOnUse"><stop offset=".37" style="stop-color:#31eb34"/><stop offset=".47" style="stop-color:#31eb34"/><stop offset=".65" style="stop-color:#a3eb36"/><stop offset=".75" style="stop-color:#f8f739"/><stop offset=".86" style="stop-color:#f8f74b"/></linearGradient><path d="M492.7 668.1 352.2 964.4c-18.1 37.9-49.4 68.5-91 87.6-21.9 8.3-43.9 12.5-65.4 12.9h-2.7c-47.5.1-92.1-18.3-125.7-51.8-17-17-30.1-36.8-38.9-58.5-1.8-4.3-3.3-8.7-4.8-13.1-12-38-11.2-80.6 4.8-122.4 19-41.4 49.7-72.8 87.5-90.9l296.4-140.5c15.1-7.7 32.2-8.5 47.4-2.9 8 2.9 15.5 7.6 21.8 13.9l.1.1c18.3 18.4 22.7 46.2 11 69.3" style="fill:url(#rsn-b)"/><linearGradient id="rsn-c" x1="219.757" x2="510.387" y1="385.385" y2="1306.405" gradientTransform="matrix(1 0 0 -1 0 1080)" gradientUnits="userSpaceOnUse"><stop offset=".17" style="stop-color:#36eb39"/><stop offset=".21" style="stop-color:#61fa82"/><stop offset=".25" style="stop-color:#61faca"/><stop offset=".29" style="stop-color:#61fafa"/><stop offset=".35" style="stop-color:#61d1fa"/></linearGradient><path d="M461 515.7c0 .1 0 .2-.1.2-4.2 13.2-16.2 22.2-30 22.5l-202.6 9.3c-11.8.5-23.5-1-35-4.5-26.7-8.2-48.6-26.2-61.7-50.9-.3-.6-.6-1.1-.9-1.7-12.3-24.2-14.7-51.8-6.8-77.9 4.7-15.3 12.6-29 23.2-40.4 7.9-8.5 17.2-15.7 27.7-21.3 15.3-8.1 32-12.3 48.9-12.3 10.2 0 20.6 1.5 30.7 4.6 11.4 3.5 22 8.8 31.5 15.8l162.8 121c6.8 4.8 11.3 11.8 12.9 19.5 1.2 5.2 1 10.7-.6 16.1" style="fill:url(#rsn-c)"/><linearGradient id="rsn-d" x1="132.64" x2="921.91" y1="181.991" y2="361.301" gradientTransform="matrix(1 0 0 -1 0 1080)" gradientUnits="userSpaceOnUse"><stop offset=".23" style="stop-color:#f8c74b"/><stop offset=".45" style="stop-color:#f8c74b"/><stop offset=".63" style="stop-color:#ff6450"/><stop offset=".68" style="stop-color:#ff5650"/><stop offset=".72" style="stop-color:#ff5050"/></linearGradient><path d="M588.2 948.8c10.3 5.4 21.2 9.1 32.3 10.9 15.6 2.5 31.7 1.5 47.3-3.3 10.1-3.1 19.5-7.6 27.8-13.2 13.7-9.2 24.8-21.5 32.7-35.6 2.5-4.4 4.7-9.1 6.5-13.8 8-21 9.4-44.7 2.3-67.8-3.5-11.4-8.8-22-15.8-31.5l-121-162.8c-7.9-11.3-22-16.2-35.2-12.3-.1 0-.3.1-.4.1-5.2 1.6-9.8 4.4-13.4 8.1-5.7 5.7-9 13.5-9.2 21.9l-5.3 114.6-4.1 88c-.5 11.8 1 23.5 4.5 35 8.3 26.7 26.3 48.6 51 61.7" style="fill:url(#rsn-d)"/><linearGradient id="rsn-e" x1="613.951" x2="943.971" y1="81.279" y2="803.76" gradientTransform="matrix(1 0 0 -1 0 1080)" gradientUnits="userSpaceOnUse"><stop offset=".43" style="stop-color:#ff5050"/><stop offset=".47" style="stop-color:#ff5093"/><stop offset=".54" style="stop-color:#ff50d0"/><stop offset=".59" style="stop-color:#d650ff"/><stop offset=".64" style="stop-color:#ab40f2"/></linearGradient><path d="M957 667.3c-4.9 16.1-13.4 30.2-24.3 41.6-26.5 27.6-67.2 39.8-106.2 27.8-11.4-3.5-22-8.8-31.5-15.8l-95.3-70.8-67.5-50.2c-6.3-4.4-10.6-10.7-12.5-17.7-1.5-5.5-1.6-11.5.1-17.3 0-.2.1-.4.2-.6 4.1-13.3 16.2-22.4 30-22.7l47.6-2.2 155-7.1c11.8-.5 23.6 1 35 4.5 26.7 8.2 48.6 26.2 61.7 50.9.3.5.6 1.1.8 1.6 12.4 24.3 14.9 51.9 6.9 78" style="fill:url(#rsn-e)"/><linearGradient id="rsn-f" x1="393.958" x2="542.828" y1="758.184" y2="821.484" gradientTransform="matrix(1 0 0 -1 0 1080)" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#61d1fa"/><stop offset=".21" style="stop-color:#61d1fa"/><stop offset=".38" style="stop-color:#61d1fa"/><stop offset=".58" style="stop-color:#61d1fa"/><stop offset="1" style="stop-color:#409ff2"/></linearGradient><path d="m359.5 285.5 121 162.8c8 11.4 22.3 16.3 35.6 12.2.3-.1.5-.2.7-.2 5.7-1.9 10.7-5.3 14.3-9.7 4.7-5.5 7.4-12.5 7.6-20.1l9.3-202.6c.5-11.8-1-23.6-4.5-35-8.2-26.7-26.2-48.6-50.9-61.7-10.3-5.5-21.3-9.1-32.5-10.9-15.6-2.5-31.6-1.4-47.1 3.3-27 8.2-48.3 26.5-60.9 49.5-13.2 23.9-17 52.8-8.5 80.9 3.6 11.4 9 22 15.9 31.5" style="fill:url(#rsn-f)"/></symbol>
+    <symbol id="icon-cluster" viewBox="0 0 800 800"><path d="M596.3 400c0-12.2-9.8-22-22-22-5.8 0-11.4 2.3-15.6 6.4l-116 116c-3.9 3.9-10.2 3.9-14.1 0l-53-53c-3.9-3.9-3.9-10.2 0-14.1l116-116c45.7-45.7 119.8-45.7 165.5 0 21.9 21.9 34.3 51.7 34.3 82.7z" fill="#233852"/><path d="M288.6 485c-46.9 0-85-38.1-85-85 0-1.8.1-3.7.2-5.5 2.7-41.7 36.2-75.9 77.9-79.2 20.3-1.7 40.5 4 56.9 16 6.3 4.5 15 3.7 20.5-1.8l49.5-49.5c3.9-3.9 3.9-10.2 0-14.1l-.4-.4c-35.4-31.5-81.7-47.8-129-45.3-92.3 4.7-166.9 80.4-170.5 172.7-3.9 99.3 73.5 183 172.9 186.9 46.5 1.8 91.9-14.5 126.7-45.4 4.1-3.7 4.4-10 .7-14.1-.1-.1-.2-.3-.4-.4l-49.5-49.5c-5.5-5.5-14.2-6.3-20.6-1.7-14.4 10.7-31.9 16.3-49.9 16.3z" style="fill:#00a7ea;stroke:#231815;stroke-width:9.206038e-02;stroke-miterlimit:10"/><path d="m691.2 395.9-95 3.3v.8c0 12.2-9.8 22-22 22-5.8 0-11.4-2.3-15.6-6.4l-116-116c-3.9-3.9-10.2-3.9-14.1 0l-53 53c-3.9 3.9-3.9 10.2 0 14.1l116 116c45.7 45.7 119.8 45.7 165.5 0 21.9-21.9 34.3-51.7 34.3-82.7 0-1.4 0-2.7-.1-4.1" fill="#233852"/></symbol>
+  </defs>
+</svg>
+<div class="wrap">
+
+  <header class="intro">
+    <img class="avatar" src="./icon-with-avatar.png" alt="anatawa12's icon">
+    <div>
+      <h1>anatawa12</h1>
+      <p class="tagline">Multilingual developer based in Japan. Building tools around VRChat, Misskey, and whatever's in between.</p>
+    </div>
+  </header>
+
+  <section aria-labelledby="accounts-label">
+    <p class="eyebrow" id="accounts-label">Accounts</p>
+    <ul class="tiles">
+      <li><a class="tile" data-id="@anatawa12" href="https://go.anatawa12.com/github" target="_blank" rel="noopener"><span class="icon" style="color:#181717"><svg viewBox="0 0 24 24"><use href="#icon-github"/></svg></span><span class="label">GitHub</span></a></li>
+      <li><a class="tile" data-id="@anatawa12@misskey.niri.la" href="https://go.anatawa12.com/misskey" target="_blank" rel="noopener"><span class="icon" style="color:#A1CA03"><svg viewBox="0 0 24 24"><use href="#icon-misskey"/></svg></span><span class="label">Misskey</span></a></li>
+      <li><a class="tile" data-id="@kakerigawa" href="https://go.anatawa12.com/twitter.main" target="_blank" rel="noopener"><span class="icon" style="color:#1DA1F2"><svg viewBox="0 0 512 512"><use href="#icon-twitter"/></svg></span><span class="label">Twitter</span></a></li>
+      <li><a class="tile" data-id="@anatawa12_vrc" href="https://go.anatawa12.com/twitter.vrchat" target="_blank" rel="noopener"><span class="icon" style="color:#1DA1F2"><svg viewBox="0 0 512 512"><use href="#icon-twitter"/></svg></span><span class="label">Twitter (VRChat)</span></a></li>
+      <li><a class="tile" data-id="anatawa12" href="https://go.anatawa12.com/vrchat" target="_blank" rel="noopener"><span class="icon" style="color:#000"><svg viewBox="0 0 24 24"><use href="#icon-vrchat"/></svg></span><span class="label">VRChat</span></a></li>
+      <li><span class="tile disabled" data-id="anatawa12" title="No public link"><span class="icon"><svg viewBox="0 0 1080 1080"><use href="#icon-resonite"/></svg></span><span class="label">Resonite</span></span></li>
+      <li><a class="tile" data-id="anatawa12" href="https://go.anatawa12.com/cluster" target="_blank" rel="noopener"><span class="icon"><svg viewBox="0 0 800 800"><use href="#icon-cluster"/></svg></span><span class="label">cluster</span></a></li>
+      <li><a class="tile" data-id="@anatawa12" href="https://go.anatawa12.com/qiita" target="_blank" rel="noopener"><span class="icon" style="color:#55C500"><svg viewBox="0 0 24 24"><use href="#icon-qiita"/></svg></span><span class="label">Qiita</span></a></li>
+      <li><a class="tile" data-id="@anatawa12" href="https://go.anatawa12.com/zenn" target="_blank" rel="noopener"><span class="icon" style="color:#3EA8FF"><svg viewBox="0 0 24 24"><use href="#icon-zenn"/></svg></span><span class="label">Zenn</span></a></li>
+      <li><a class="tile" data-id="anatawa12" href="https://go.anatawa12.com/reddit" target="_blank" rel="noopener"><span class="icon" style="color:#FF4500"><svg viewBox="0 0 24 24"><use href="#icon-reddit"/></svg></span><span class="label">Reddit</span></a></li>
+      <li><a class="tile" data-id="anatawa12.booth.pm" href="https://go.anatawa12.com/booth" target="_blank" rel="noopener"><span class="icon"><svg viewBox="0 0 1024 1024"><use href="#icon-booth"/></svg></span><span class="label">BOOTH</span></a></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="projects-label">
+    <p class="eyebrow" id="projects-label">Projects</p>
+    <ul class="projects">
+      <li class="project">
+        <a href="https://vpm.anatawa12.com/avatar-optimizer/" target="_blank" rel="noopener">
+          <div class="project-head">
+            <span class="project-name">Avatar Optimizer</span>
+            <span class="project-meta">C#</span>
+          </div>
+          <p class="project-desc">Non-destructive optimization utilities for VRChat avatars.</p>
+        </a>
+      </li>
+      <li class="project">
+        <a href="https://an12.net/alcom" target="_blank" rel="noopener">
+          <div class="project-head">
+            <span class="project-name">ALCOM</span>
+            <span class="project-meta">Rust</span>
+          </div>
+          <p class="project-desc">Graphical client for the VRChat Creator Companion, part of vrc-get.</p>
+        </a>
+      </li>
+      <li class="project">
+        <a href="https://fixrtm.anatawa12.com/" target="_blank" rel="noopener">
+          <div class="project-head">
+            <span class="project-name">fixRTM</span>
+            <span class="project-meta">Kotlin</span>
+          </div>
+          <p class="project-desc">Patches long-standing bugs and adds quality-of-life fixes to RTM.</p>
+        </a>
+      </li>
+      <li class="project">
+        <a href="https://github.com/anatawa12/ForgeGradle-1.2" target="_blank" rel="noopener">
+          <div class="project-head">
+            <span class="project-name">ForgeGradle-1.2</span>
+            <span class="project-meta">Java</span>
+          </div>
+          <p class="project-desc">A maintained fork of ForgeGradle for Minecraft 1.7.10 mod development.</p>
+        </a>
+      </li>
+      <li class="project">
+        <a href="https://github.com/anatawa12/clekeyOVR" target="_blank" rel="noopener">
+          <div class="project-head">
+            <span class="project-name">clekeyOVR</span>
+            <span class="project-meta">Rust</span>
+          </div>
+          <p class="project-desc">An experimental ring-style keyboard for OpenVR.</p>
+        </a>
+      </li>
+      <li class="project">
+        <a href="https://github.com/misskey-dev/misskey" target="_blank" rel="noopener">
+          <div class="project-head">
+            <span class="project-name">Misskey</span>
+            <span class="project-meta">TypeScript</span>
+          </div>
+          <p class="project-desc">An interplanetary-microblogging platform. I'm not collaborating as a project member.</p>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; anatawa12 — also on <a href="https://go.anatawa12.com/github" target="_blank" rel="noopener">GitHub</a>.</p>
+    <p>Design based on Claude.</p>
+  </footer>
+
+</div>
+</body>
+</html>
