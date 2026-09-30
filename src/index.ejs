@@ -1,5 +1,12 @@
+---
+pagination:
+  data: index-locales
+  size: 1
+  alias: locale
+permalink: "<%= locale.output %>"
+---
 <!doctype html>
-<html lang="en">
+<html lang="<%= locale.lang %>">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -299,12 +306,12 @@
     <img class="avatar" src="./icon-with-avatar.png" alt="anatawa12's icon">
     <div>
       <h1>anatawa12</h1>
-      <p class="tagline">Multilingual developer based in Japan. Building tools around VRChat, Misskey, and whatever's in between.</p>
+      <p class="tagline"><%= locale.tagline %></p>
     </div>
   </header>
 
   <section aria-labelledby="accounts-label">
-    <p class="eyebrow" id="accounts-label">Accounts</p>
+    <p class="eyebrow" id="accounts-label"><%= locale.accountsLabel %></p>
     <ul class="tiles">
       <li><a class="tile" data-id="@anatawa12" href="https://go.anatawa12.com/github" target="_blank" rel="noopener"><span class="icon" style="color:#181717"><svg viewBox="0 0 24 24"><use href="#icon-github"/></svg></span><span class="label">GitHub</span></a></li>
       <li><a class="tile" data-id="@anatawa12@nekolobby.niri.la" href="https://go.anatawa12.com/misskey" target="_blank" rel="noopener"><span class="icon" style="color:#A1CA03"><svg viewBox="0 0 24 24"><use href="#icon-misskey"/></svg></span><span class="label">Misskey</span></a></li>
@@ -321,7 +328,7 @@
   </section>
 
   <section aria-labelledby="projects-label">
-    <p class="eyebrow" id="projects-label">Popular Projects</p>
+    <p class="eyebrow" id="projects-label"><%= locale.projectsLabel %></p>
     <ul class="projects">
       <li class="project">
         <a href="https://vpm.anatawa12.com/avatar-optimizer/" target="_blank" rel="noopener">
@@ -329,7 +336,7 @@
             <span class="project-name">AAO: Avatar Optimizer</span>
             <span class="project-meta">C#</span>
           </div>
-          <p class="project-desc">Non-destructive optimization utilities for VRChat avatars.</p>
+          <p class="project-desc"><%= locale.projectDescriptions[0] %></p>
         </a>
       </li>
       <li class="project">
@@ -338,7 +345,7 @@
             <span class="project-name">ALCOM</span>
             <span class="project-meta">Rust</span>
           </div>
-          <p class="project-desc">Graphical client for the VRChat Creator Companion, part of vrc-get.</p>
+          <p class="project-desc"><%= locale.projectDescriptions[1] %></p>
         </a>
       </li>
       <li class="project">
@@ -347,7 +354,7 @@
             <span class="project-name">fixRTM</span>
             <span class="project-meta">Kotlin</span>
           </div>
-          <p class="project-desc">Patches long-standing bugs and adds quality-of-life fixes to RTM.</p>
+          <p class="project-desc"><%= locale.projectDescriptions[2] %></p>
         </a>
       </li>
       <li class="project">
@@ -356,7 +363,7 @@
             <span class="project-name">ForgeGradle-1.2</span>
             <span class="project-meta">Java</span>
           </div>
-          <p class="project-desc">A maintained fork of ForgeGradle for Minecraft 1.7.10 mod development.</p>
+          <p class="project-desc"><%= locale.projectDescriptions[3] %></p>
         </a>
       </li>
       <li class="project">
@@ -365,7 +372,7 @@
             <span class="project-name">deflate64</span>
             <span class="project-meta">Rust</span>
           </div>
-          <p class="project-desc">The Deflate64&trade; decompression library for Rust.</p>
+          <p class="project-desc"><%= locale.projectDescriptions[4] %></p>
         </a>
       </li>
       <li class="project">
@@ -374,7 +381,7 @@
             <span class="project-name">clekeyOVR</span>
             <span class="project-meta">Rust</span>
           </div>
-          <p class="project-desc">An experimental ring-style keyboard for OpenVR.</p>
+          <p class="project-desc"><%= locale.projectDescriptions[5] %></p>
         </a>
       </li>
       <li class="project">
@@ -383,15 +390,17 @@
             <span class="project-name">Misskey</span>
             <span class="project-meta">TypeScript</span>
           </div>
-          <p class="project-desc">An interplanetary-microblogging platform. I'm not collaborating as a project member.</p>
+          <p class="project-desc"><%= locale.projectDescriptions[6] %></p>
         </a>
       </li>
     </ul>
   </section>
 
   <footer>
-    <p>&copy; anatawa12 — also on <a href="https://github.com/anatawa12/anatawa12.com" target="_blank" rel="noopener">GitHub</a>.</p>
-    <p>Design based on Claude.</p>
+    <%# The key must match the {GitHub} placeholder in each locale's footerGithub string. %>
+    <% const footerLinks = { GitHub: '<a href="https://github.com/anatawa12/anatawa12.com" target="_blank" rel="noopener">GitHub</a>' }; %>
+    <p>&copy; anatawa12 — <%- templateUtils.interpolate(locale.footerGithub, footerLinks) %></p>
+    <p><%= locale.footerDesign %></p>
   </footer>
 
 </div>

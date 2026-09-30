@@ -1,0 +1,38 @@
+[
+  {
+    "lang": "en",
+    "output": "index.html",
+    "tagline": "Polyglot developer based in Japan. Building tools around VRChat, Misskey, and whatever's in between.",
+    "accountsLabel": "Accounts",
+    "projectsLabel": "Popular Projects",
+    "projectDescriptions": [
+      "Non-destructive optimization utilities for VRChat avatars.",
+      "Graphical client for the VRChat Creator Companion, part of vrc-get.",
+      "Patches long-standing bugs and adds quality-of-life fixes to RTM.",
+      "A maintained fork of ForgeGradle for Minecraft 1.7.10 mod development.",
+      "The Deflate64™ decompression library for Rust.",
+      "An experimental ring-style keyboard for OpenVR.",
+      "An interplanetary-microblogging platform. I'm collaborating as a project member."
+    ],
+    "footerGithub": "also on {GitHub}.",
+    "footerDesign": "Designed with Claude."
+  },
+  {
+    "lang": "ja",
+    "output": "ja.html",
+    "tagline": "日本を拠点に活動する、複数の言語を扱う開発者。VRChat や Misskey、その他もろもろのツールを作っています。",
+    "accountsLabel": "アカウント",
+    "projectsLabel": "人気のプロジェクト",
+    "projectDescriptions": [
+      "VRChatアバター向けの非破壊な最適化ユーティリティ。",
+      "VRChat Creator Companion向けのGUIクライアント。vrc-getの一部です。",
+      "RTMの長年のバグを修正し、利便性を向上させます。",
+      "Minecraft 1.7.10のMOD開発向けに保守しているForgeGradleのフォーク。",
+      "Rust向けのDeflate64™解凍ライブラリ。",
+      "OpenVR向けの実験的なリング型キーボード。",
+      "惑星間マイクロブログプラットフォーム。プロジェクトメンバーとして開発に参加しています。"
+    ],
+    "footerGithub": "{GitHub}にもあります",
+    "footerDesign": "Claudeと共にデザインしました"
+  }
+]
