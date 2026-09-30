@@ -60,7 +60,7 @@ function interpolate(template, replacements) {
       throw new Error(`Invalid placeholder: {${name}}`);
     }
     if (!Object.hasOwn(replacements, name)) {
-      throw new Error(`No replacement provided for placeholder: ${name}`);
+      throw new Error(`No replacement provided for placeholder: {${name}}`);
     }
     if (typeof replacements[name] !== "string") {
       throw new TypeError(`Replacement for ${name} must be an HTML string`);
