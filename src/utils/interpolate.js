@@ -10,6 +10,12 @@ function escapeHtml(value) {
   });
 }
 
+function assertNoStrayClosingBrace(value) {
+  if (value.includes("}")) {
+    throw new Error("Malformed placeholder in template");
+  }
+}
+
 /**
  * Interpolates `{name}` placeholders, escaping literal text and inserting mapped HTML.
  * Replacement values are emitted unescaped and must only contain trusted HTML.
@@ -35,16 +41,12 @@ function interpolate(template, replacements) {
 
     if (open === -1) {
       const text = template.slice(position);
-      if (text.includes("}")) {
-        throw new Error("Malformed placeholder in template");
-      }
+      assertNoStrayClosingBrace(text);
       result += escapeHtml(text);
       break;
     }
     const text = template.slice(position, open);
-    if (text.includes("}")) {
-      throw new Error("Malformed placeholder in template");
-    }
+    assertNoStrayClosingBrace(text);
     result += escapeHtml(text);
 
     const end = template.indexOf("}", open + 1);
