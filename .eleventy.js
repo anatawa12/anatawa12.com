@@ -1,5 +1,4 @@
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addPassthroughCopy("src/CNAME");
   eleventyConfig.addPassthroughCopy("src/icon-circle.svg");
   eleventyConfig.addPassthroughCopy("src/icon-with-avatar.png");
 
