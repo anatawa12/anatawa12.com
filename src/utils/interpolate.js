@@ -18,19 +18,33 @@ function interpolate(template, replacements) {
     throw new TypeError("replacements must be an object");
   }
 
-  const placeholderPattern = /\{([^{}]*)\}/g;
   let result = "";
   let position = 0;
 
-  for (const match of template.matchAll(placeholderPattern)) {
-    const [placeholder, name] = match;
-    const text = template.slice(position, match.index);
+  while (position < template.length) {
+    const open = template.indexOf("{", position);
+    const close = template.indexOf("}", position);
 
-    if (/[{}]/.test(text)) {
+    if (open === -1 && close === -1) {
+      break;
+    }
+    if (open === -1 || (close !== -1 && close < open)) {
       throw new Error("Malformed placeholder in template");
     }
+    result += escapeHtml(template.slice(position, open));
+
+    const end = template.indexOf("}", open + 1);
+    const nested = template.indexOf("{", open + 1);
+    if (end === -1 || (nested !== -1 && nested < end)) {
+      throw new Error("Malformed placeholder in template");
+    }
+
+    const name = template.slice(open + 1, end);
+    if (name.length === 0) {
+      throw new Error("Empty placeholder in template");
+    }
     if (!/^[A-Za-z][A-Za-z0-9_]*$/.test(name)) {
-      throw new Error(`Invalid placeholder: ${placeholder}`);
+      throw new Error(`Invalid placeholder: {${name}}`);
     }
     if (!Object.hasOwn(replacements, name)) {
       throw new Error(`No replacement provided for placeholder: ${name}`);
@@ -39,12 +53,13 @@ function interpolate(template, replacements) {
       throw new TypeError(`Replacement for ${name} must be an HTML string`);
     }
 
-    result += escapeHtml(text) + replacements[name];
-    position = match.index + placeholder.length;
+    // Replacement values are trusted HTML; keep them out of locale data.
+    result += replacements[name];
+    position = end + 1;
   }
 
   const remainingText = template.slice(position);
-  if (/[{}]/.test(remainingText)) {
+  if (remainingText.includes("{") || remainingText.includes("}")) {
     throw new Error("Malformed placeholder in template");
   }
 

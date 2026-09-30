@@ -6,7 +6,6 @@
     "@11ty/eleventy-plugin-ejs": "^1.0.0"
   },
   "scripts": {
-    "build": "npx @11ty/eleventy",
-    "test": "node --test"
+    "build": "npx @11ty/eleventy"
   }
 }
