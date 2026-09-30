@@ -1,7 +1,7 @@
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addPassthroughCopy("CNAME");
-  eleventyConfig.addPassthroughCopy("icon-circle.svg");
-  eleventyConfig.addPassthroughCopy("icon-with-avatar.png");
+  eleventyConfig.addPassthroughCopy("src/CNAME");
+  eleventyConfig.addPassthroughCopy("src/icon-circle.svg");
+  eleventyConfig.addPassthroughCopy("src/icon-with-avatar.png");
 
   return {
     dir: {
