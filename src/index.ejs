@@ -14,39 +14,13 @@ permalink: "<%= locale.output %>"
   <link rel="icon" href="./icon-circle.svg">
   <meta name="description" content="the domain for anatawa12 — multilingual developer in Japan.">
   <style>
-    :root{
-      --bg: #deeaf2;
-      --ink: #1c1b18;
-      --muted: #757369;
-      --line: #e2e0d6;
-      --accent: #34524a;
-      --accent-soft: #34524a14;
-      --radius: 6px;
-      --sans: "Noto Sans", "Noto Sans JP", "Hiragino Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-      --mono: ui-monospace, "SF Mono", "Cascadia Mono", "Noto Sans Mono", Consolas, "Liberation Mono", monospace;
-    }
-
-    *{ box-sizing: border-box; }
-
-    html{ -webkit-text-size-adjust: 100%; }
-
-    body{
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+    <%- include("./_includes/common.css") %>
 
     .wrap{
       max-width: 620px;
       margin: 0 auto;
       padding: 96px 24px 72px;
     }
-
-    a{ color: inherit; }
 
     .eyebrow{
       font-family: var(--mono);
