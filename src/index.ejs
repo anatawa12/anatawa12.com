@@ -397,7 +397,8 @@ permalink: "<%= locale.output %>"
   </section>
 
   <footer>
-    <p>&copy; anatawa12 — <% if (locale.lang === "en") { %><%= locale.footerAlso %> <% } %><a href="https://github.com/anatawa12/anatawa12.com" target="_blank" rel="noopener">GitHub</a><% if (locale.lang === "ja") { %><%= locale.footerAlso %><% } else { %>.<% } %></p>
+    <% const footerParts = locale.footerGithub.split("{GitHub}"); %>
+    <p>&copy; anatawa12 — <%= footerParts[0] %><a href="https://github.com/anatawa12/anatawa12.com" target="_blank" rel="noopener">GitHub</a><%= footerParts[1] %></p>
     <p><%= locale.footerDesign %></p>
   </footer>
 

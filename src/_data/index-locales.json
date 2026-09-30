@@ -14,7 +14,7 @@
       "An experimental ring-style keyboard for OpenVR.",
       "An interplanetary-microblogging platform. I'm not collaborating as a project member."
     ],
-    "footerAlso": "also on",
+    "footerGithub": "also on {GitHub}.",
     "footerDesign": "Design based on Claude."
   },
   {
@@ -32,7 +32,7 @@
       "OpenVR向けの実験的なリング型キーボード。",
       "惑星間マイクロブログプラットフォームです。プロジェクトメンバーとして開発に参加しているわけではありません。"
     ],
-    "footerAlso": "でも活動しています。",
+    "footerGithub": "{GitHub}でも活動しています。",
     "footerDesign": "Claudeをベースにしたデザインです。"
   }
 ]
