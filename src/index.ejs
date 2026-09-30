@@ -3,10 +3,10 @@ pagination:
   data: index-locales
   size: 1
   alias: locale
-permalink: "{{ locale.output }}"
+permalink: "<%= locale.output %>"
 ---
 <!doctype html>
-<html lang="{{ locale.lang }}">
+<html lang="<%= locale.lang %>">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -306,12 +306,12 @@ permalink: "{{ locale.output }}"
     <img class="avatar" src="./icon-with-avatar.png" alt="anatawa12's icon">
     <div>
       <h1>anatawa12</h1>
-      <p class="tagline">{{ locale.tagline }}</p>
+      <p class="tagline"><%= locale.tagline %></p>
     </div>
   </header>
 
   <section aria-labelledby="accounts-label">
-    <p class="eyebrow" id="accounts-label">{{ locale.accountsLabel }}</p>
+    <p class="eyebrow" id="accounts-label"><%= locale.accountsLabel %></p>
     <ul class="tiles">
       <li><a class="tile" data-id="@anatawa12" href="https://go.anatawa12.com/github" target="_blank" rel="noopener"><span class="icon" style="color:#181717"><svg viewBox="0 0 24 24"><use href="#icon-github"/></svg></span><span class="label">GitHub</span></a></li>
       <li><a class="tile" data-id="@anatawa12@nekolobby.niri.la" href="https://go.anatawa12.com/misskey" target="_blank" rel="noopener"><span class="icon" style="color:#A1CA03"><svg viewBox="0 0 24 24"><use href="#icon-misskey"/></svg></span><span class="label">Misskey</span></a></li>
@@ -328,7 +328,7 @@ permalink: "{{ locale.output }}"
   </section>
 
   <section aria-labelledby="projects-label">
-    <p class="eyebrow" id="projects-label">{{ locale.projectsLabel }}</p>
+    <p class="eyebrow" id="projects-label"><%= locale.projectsLabel %></p>
     <ul class="projects">
       <li class="project">
         <a href="https://vpm.anatawa12.com/avatar-optimizer/" target="_blank" rel="noopener">
@@ -336,7 +336,7 @@ permalink: "{{ locale.output }}"
             <span class="project-name">AAO: Avatar Optimizer</span>
             <span class="project-meta">C#</span>
           </div>
-          <p class="project-desc">{{ locale.projectDescriptions[0] }}</p>
+          <p class="project-desc"><%= locale.projectDescriptions[0] %></p>
         </a>
       </li>
       <li class="project">
@@ -345,7 +345,7 @@ permalink: "{{ locale.output }}"
             <span class="project-name">ALCOM</span>
             <span class="project-meta">Rust</span>
           </div>
-          <p class="project-desc">{{ locale.projectDescriptions[1] }}</p>
+          <p class="project-desc"><%= locale.projectDescriptions[1] %></p>
         </a>
       </li>
       <li class="project">
@@ -354,7 +354,7 @@ permalink: "{{ locale.output }}"
             <span class="project-name">fixRTM</span>
             <span class="project-meta">Kotlin</span>
           </div>
-          <p class="project-desc">{{ locale.projectDescriptions[2] }}</p>
+          <p class="project-desc"><%= locale.projectDescriptions[2] %></p>
         </a>
       </li>
       <li class="project">
@@ -363,7 +363,7 @@ permalink: "{{ locale.output }}"
             <span class="project-name">ForgeGradle-1.2</span>
             <span class="project-meta">Java</span>
           </div>
-          <p class="project-desc">{{ locale.projectDescriptions[3] }}</p>
+          <p class="project-desc"><%= locale.projectDescriptions[3] %></p>
         </a>
       </li>
       <li class="project">
@@ -372,7 +372,7 @@ permalink: "{{ locale.output }}"
             <span class="project-name">deflate64</span>
             <span class="project-meta">Rust</span>
           </div>
-          <p class="project-desc">{{ locale.projectDescriptions[4] }}</p>
+          <p class="project-desc"><%= locale.projectDescriptions[4] %></p>
         </a>
       </li>
       <li class="project">
@@ -381,7 +381,7 @@ permalink: "{{ locale.output }}"
             <span class="project-name">clekeyOVR</span>
             <span class="project-meta">Rust</span>
           </div>
-          <p class="project-desc">{{ locale.projectDescriptions[5] }}</p>
+          <p class="project-desc"><%= locale.projectDescriptions[5] %></p>
         </a>
       </li>
       <li class="project">
@@ -390,15 +390,15 @@ permalink: "{{ locale.output }}"
             <span class="project-name">Misskey</span>
             <span class="project-meta">TypeScript</span>
           </div>
-          <p class="project-desc">{{ locale.projectDescriptions[6] }}</p>
+          <p class="project-desc"><%= locale.projectDescriptions[6] %></p>
         </a>
       </li>
     </ul>
   </section>
 
   <footer>
-    <p>&copy; anatawa12 — {% if locale.lang == "en" %}{{ locale.footerAlso }} {% endif %}<a href="https://github.com/anatawa12/anatawa12.com" target="_blank" rel="noopener">GitHub</a>{% if locale.lang == "ja" %}{{ locale.footerAlso }}{% else %}.{% endif %}</p>
-    <p>{{ locale.footerDesign }}</p>
+    <p>&copy; anatawa12 — <% if (locale.lang === "en") { %><%= locale.footerAlso %> <% } %><a href="https://github.com/anatawa12/anatawa12.com" target="_blank" rel="noopener">GitHub</a><% if (locale.lang === "ja") { %><%= locale.footerAlso %><% } else { %>.<% } %></p>
+    <p><%= locale.footerDesign %></p>
   </footer>
 
 </div>
