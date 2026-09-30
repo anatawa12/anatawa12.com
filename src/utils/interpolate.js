@@ -14,7 +14,7 @@ function escapeHtml(value) {
  * Interpolates `{name}` placeholders, escaping literal text and inserting mapped HTML.
  * Replacement values are emitted unescaped and must only contain trusted HTML.
  *
- * @param {string} template Text containing named placeholders; unmatched or malformed braces throw.
+ * @param {string} template Text containing `{Name}` placeholders whose names start with a letter and contain only letters, digits, or underscores; unmatched or malformed braces throw.
  * @param {Record<string, string>} replacements Map of placeholder names to trusted HTML strings.
  * @returns {string} HTML with escaped text and inserted replacement markup.
  * @throws {TypeError|Error} When arguments are invalid or a placeholder is malformed or unknown.

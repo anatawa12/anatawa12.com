@@ -397,6 +397,7 @@ permalink: "<%= locale.output %>"
   </section>
 
   <footer>
+    <%# The key must match the {GitHub} placeholder in each locale's footerGithub string. %>
     <% const footerLinks = { GitHub: '<a href="https://github.com/anatawa12/anatawa12.com" target="_blank" rel="noopener">GitHub</a>' }; %>
     <p>&copy; anatawa12 — <%- templateUtils.interpolate(locale.footerGithub, footerLinks) %></p>
     <p><%= locale.footerDesign %></p>
