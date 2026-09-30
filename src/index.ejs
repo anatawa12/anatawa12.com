@@ -397,7 +397,8 @@ permalink: "<%= locale.output %>"
   </section>
 
   <footer>
-    <p>&copy; anatawa12 — <%- templateUtils.interpolate(locale.footerGithub, { GitHub: templateUtils.links.GitHub }) %></p>
+    <% const footerLinks = { GitHub: '<a href="https://github.com/anatawa12/anatawa12.com" target="_blank" rel="noopener">GitHub</a>' }; %>
+    <p>&copy; anatawa12 — <%- templateUtils.interpolate(locale.footerGithub, footerLinks) %></p>
     <p><%= locale.footerDesign %></p>
   </footer>
 

@@ -10,6 +10,15 @@ function escapeHtml(value) {
   });
 }
 
+/**
+ * Interpolates `{name}` placeholders, escaping literal text and inserting mapped HTML.
+ * Replacement values are emitted unescaped and must only contain trusted HTML.
+ *
+ * @param {string} template Text containing named placeholders; unmatched or malformed braces throw.
+ * @param {Record<string, string>} replacements Map of placeholder names to trusted HTML strings.
+ * @returns {string} HTML with escaped text and inserted replacement markup.
+ * @throws {TypeError|Error} When arguments are invalid or a placeholder is malformed or unknown.
+ */
 function interpolate(template, replacements) {
   if (typeof template !== "string") {
     throw new TypeError("template must be a string");
@@ -23,15 +32,20 @@ function interpolate(template, replacements) {
 
   while (position < template.length) {
     const open = template.indexOf("{", position);
-    const close = template.indexOf("}", position);
 
-    if (open === -1 && close === -1) {
+    if (open === -1) {
+      const text = template.slice(position);
+      if (text.includes("}")) {
+        throw new Error("Malformed placeholder in template");
+      }
+      result += escapeHtml(text);
       break;
     }
-    if (open === -1 || (close !== -1 && close < open)) {
+    const text = template.slice(position, open);
+    if (text.includes("}")) {
       throw new Error("Malformed placeholder in template");
     }
-    result += escapeHtml(template.slice(position, open));
+    result += escapeHtml(text);
 
     const end = template.indexOf("}", open + 1);
     const nested = template.indexOf("{", open + 1);
@@ -40,9 +54,6 @@ function interpolate(template, replacements) {
     }
 
     const name = template.slice(open + 1, end);
-    if (name.length === 0) {
-      throw new Error("Empty placeholder in template");
-    }
     if (!/^[A-Za-z][A-Za-z0-9_]*$/.test(name)) {
       throw new Error(`Invalid placeholder: {${name}}`);
     }
@@ -58,12 +69,7 @@ function interpolate(template, replacements) {
     position = end + 1;
   }
 
-  const remainingText = template.slice(position);
-  if (remainingText.includes("{") || remainingText.includes("}")) {
-    throw new Error("Malformed placeholder in template");
-  }
-
-  return result + escapeHtml(remainingText);
+  return result;
 }
 
 module.exports = interpolate;
