@@ -6,6 +6,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addGlobalData("templateUtils", { interpolate });
   eleventyConfig.addPassthroughCopy("src/icon-circle.svg");
   eleventyConfig.addPassthroughCopy("src/icon-with-avatar.png");
+  eleventyConfig.addPassthroughCopy("src/common.css");
 
   return {
     dir: {
