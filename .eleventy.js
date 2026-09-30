@@ -1,5 +1,5 @@
 const ejsPlugin = require("@11ty/eleventy-plugin-ejs");
-const interpolate = require("./src/_utils/interpolate");
+const interpolate = require("./_utils/interpolate");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(ejsPlugin);
