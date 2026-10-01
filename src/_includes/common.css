@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light dark;
   --bg: #deeaf2;
   --ink: #1c1b18;
   --muted: #757369;
@@ -8,6 +9,17 @@
   --radius: 6px;
   --sans: "Noto Sans", "Noto Sans JP", "Hiragino Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   --mono: ui-monospace, "SF Mono", "Cascadia Mono", "Noto Sans Mono", Consolas, "Liberation Mono", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #194d69;
+    --ink: #edf2f4;
+    --muted: #a8b3b9;
+    --line: #39464e;
+    --accent: #9ed0bf;
+    --accent-soft: #9ed0bf1f;
+  }
 }
 
 * { box-sizing: border-box; }
